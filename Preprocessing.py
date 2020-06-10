@@ -39,10 +39,10 @@ def run(df):
     y = df['overall']
     x_train, x_test, y_train, y_test = train_test_split(x,y, shuffle=True)
 
-    vectorizer = TfidfVectorizer()
+    vectorizer = TfidfVectorizer(max_features=8000)
 
-    x_train = vectorizer.fit_transform(x_train)
-    x_test = vectorizer.transform(x_test)
+    x_train = vectorizer.fit_transform(x_train).toarray()
+    x_test = vectorizer.transform(x_test).toarray()
 
     return {'x_train': x_train, 'x_test': x_test, 'y_train': y_train, 'y_test': y_test}
 
