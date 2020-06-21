@@ -17,7 +17,7 @@ def main():
     results_dict = {}
 
     results_dict['mnb'] = NaiveBayes.run(train_test_data)
-    results_dict['rfr'] = RFR.run(train_test_data)
+    results_dict['rf'] = RFR.run(train_test_data)
     results_dict['xgboost'] = XGBoost.run(train_test_data)
     #results_dict['lstm'] = LSTM.run(train_test_data)
     
