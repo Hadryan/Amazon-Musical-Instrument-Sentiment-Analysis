@@ -6,8 +6,11 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 import os, pickle
 
 
-def run(data):
-    if not os.path.isfile('Data/pickles/xgboost'):
+def run(data, under_sampling=None):
+
+    path = 'Data/pickles/lstm' if not under_sampling else 'Data/pickles/new_approach/lstm'
+
+    if not os.path.isfile(path):
         '''params = {
             'n_estimators': [10, 20, 30, 40, 50, 100, 250, 500, 1000],
             'max_depth': [1, 3, 5],
@@ -28,10 +31,10 @@ def run(data):
 
         grid.fit(data['x_train'], data['y_train'])
 
-        with open('Data/pickles/xgboost', 'wb') as file:
+        with open(path, 'wb') as file:
             pickle.dump(grid, file)
     else:
-        with open('Data/pickles/xgboost', 'rb') as file:
+        with open(path, 'rb') as file:
             grid = pickle.load(file)
     model = grid.best_estimator_
 

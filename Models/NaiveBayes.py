@@ -6,8 +6,10 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 import os, pickle
 
 
-def run(data):
-    if not os.path.isfile('Data/pickles/mb_grid'):
+def run(data, under_sampling=None):
+
+    path = 'Data/pickles/mb_grid' if not under_sampling else 'Data/pickles/new_approach/mb_grid'
+    if not os.path.isfile(path):
 
         params = {
             'alpha': [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09,
@@ -18,11 +20,11 @@ def run(data):
 
         grid.fit(data['x_train'], data['y_train'])
 
-        with open('Data/pickles/mb_grid', 'wb') as file:
+        with open(path, 'wb') as file:
             pickle.dump(grid, file)
 
     else:
-        with open('Data/pickles/mb_grid', 'rb') as file:
+        with open(path, 'rb') as file:
             grid = pickle.load(file)
 
     model = grid.best_estimator_
