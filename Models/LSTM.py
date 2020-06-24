@@ -12,9 +12,8 @@ tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
-def run(data, under_sampling=None):
-    path = 'Data/pickles/lstm' if not under_sampling else 'Data/pickles/new_approach/lstm'
-    weights_path = 'Data/pickles/lstm_weights.h5' if not under_sampling else 'Data/pickles/new_approach/lstm_weights.h5'
+def run(data, path, weights_path):
+
     x_train = data['x_train']
     x_test = data['x_test']
     y_train = data['y_train']

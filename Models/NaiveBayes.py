@@ -6,9 +6,8 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 import os, pickle
 
 
-def run(data, under_sampling=None):
+def run(data, path):
 
-    path = 'Data/pickles/mb_grid' if not under_sampling else 'Data/pickles/new_approach/mb_grid'
     if not os.path.isfile(path):
 
         params = {
