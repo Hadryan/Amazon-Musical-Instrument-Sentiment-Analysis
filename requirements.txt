@@ -10,3 +10,4 @@ sklearn~=0.0
 scikit-learn~=0.23.1
 xgboost==0.90
 imbalanced-learn
+autocorrect

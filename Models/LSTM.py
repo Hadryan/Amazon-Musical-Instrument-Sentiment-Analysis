@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 
 import tensorflow as tf
 import pickle, os
+import numpy as np
 
 physical_devices = tf.config.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
@@ -18,7 +19,7 @@ def run(data, path, weights_path):
     x_test = data['x_test']
     y_train = data['y_train']
     y_test = data['y_test']
-
+    print(y_train)
     x_train, x_val, y_train, y_val = train_test_split(x_train, y_train)
 
     opt = tf.keras.optimizers.Adam(lr=1e-3, decay=1e-5)
@@ -39,7 +40,7 @@ def run(data, path, weights_path):
 
     model.add(Dropout(0.2))
 
-    model.add(Dense(3, activation='softmax'))
+    model.add(Dense(len(np.unique(y_train)), activation='softmax'))
 
     callback = tf.keras.callbacks.EarlyStopping(monitor='loss', patience=5)
 
